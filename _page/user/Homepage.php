@@ -110,9 +110,9 @@ if(isset($_GET['download'])){
                             $db2 = new database();
                             if(isset($_GET['search'])){
                                 $text = $_GET['text'];
-                                $db2 -> select('files,users,type_files','reading_status,name_file,id_user,username_user,timestamp_file,name_ftype,id_file,fname_user,lname_user,file_user',"(to_file = $userid AND to_file != '') AND own_file = id_user AND type_file = id_ftype AND status_file != 0 AND name_file LIKE '%$text%'");
+                                $db2 -> select('files,users,type_files','location_file,reading_status,name_file,id_user,username_user,timestamp_file,name_ftype,id_file,fname_user,lname_user,file_user',"(to_file = $userid AND to_file != '') AND own_file = id_user AND type_file = id_ftype AND status_file != 0 AND name_file LIKE '%$text%'");
                             }else{
-                                $db2 -> select('files,users,type_files','reading_status,name_file,id_user,username_user,timestamp_file,name_ftype,id_file,fname_user,lname_user,file_user',"to_file = $userid AND to_file != '' AND own_file = id_user AND type_file = id_ftype AND status_file != 0");
+                                $db2 -> select('files,users,type_files','location_file,reading_status,name_file,id_user,username_user,timestamp_file,name_ftype,id_file,fname_user,lname_user,file_user',"to_file = $userid AND to_file != '' AND own_file = id_user AND type_file = id_ftype AND status_file != 0");
                             }
                             while($ofp = $db2 -> query -> fetch_object())
                             {
@@ -135,8 +135,10 @@ if(isset($_GET['download'])){
                                 <td><?= $ofp -> timestamp_file ?></td>
                                 <td><?= $ofp -> name_ftype ?></td>
                                 <td><?= $ofp -> reading_status ?></td>
-                                <a
-                                    href="./Homepage.php?download=1&name=<?= $ofp -> location_file?>&id=<?= $ofp -> id_file ?>">Download</a>
+                                <td> 
+                                    <a href="./Homepage.php?download=1&name=<?= $ofp -> location_file?>&id=<?= $ofp -> id_file ?>">Download</a>
+                                </td>
+                               
                             </tr>
                             <?php } ?>
                         </tbody>

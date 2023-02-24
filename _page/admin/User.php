@@ -47,7 +47,7 @@ if(isset($_GET['active'])){
     if($db -> query){
         $_SESSION['success'] = "Activeted Successfully !";
         header('location:User.php');
-        eturn;
+        return;
     }else{
         $_SESSION['error'] = "Activeted Failed !";
         header('location:User.php');
@@ -214,9 +214,9 @@ if(isset($_GET['active'])){
                             </thead>
                             <tbody>
                             <?php 
-                                $db1 = new database();
-                                $db1 -> select("users,dept","*","status_user = 0 AND type_user = 1 AND dept_user = id_dept");
-                                while($personwait = $db1 -> query -> fetch_object()){
+                                $db2 = new database();
+                                $db2 -> select("users,dept","*","status_user = 0 AND type_user = 1");
+                                while($personwait = $db2 -> query -> fetch_object()){
                                 ?>
                                 <tr>
                                     <td>
